@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import admin from "firebase-admin";
-import serviceAccountKey from "./react-blog-b0b34-firebase-adminsdk-fbsvc-2fe2b78465.json" assert { type: "json" };
+//import serviceAccountKey from "./react-blog-b0b34-firebase-adminsdk-fbsvc-2fe2b78465.json" assert { type: "json" };
 import { getAuth } from "firebase-admin/auth";
 
 // Schema Imports
@@ -14,6 +14,9 @@ import User from "./Schema/User.js";
 
 const server = express();
 const PORT = process.env.PORT || 3000;
+const serviceAccountKey = JSON.parse(
+  process.env.GOOGLE_APPLICATION_CREDENTIALS
+);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccountKey),
