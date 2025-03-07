@@ -14,9 +14,34 @@ import User from "./Schema/User.js";
 
 const server = express();
 const PORT = process.env.PORT || 3000;
-const serviceAccountKey = JSON.parse(
-  process.env.GOOGLE_APPLICATION_CREDENTIALS
-);
+
+const {
+  FIREBASE_TYPE: type,
+  FIREBASE_PROJECT_ID: project_id,
+  FIREBASE_PRIVATE_KEY_ID: private_key_id,
+  FIREBASE_PRIVATE_KEY: private_key,
+  FIREBASE_CLIENT_EMAIL: client_email,
+  FIREBASE_CLIENT_ID: client_id,
+  FIREBASE_AUTH_URI: auth_uri,
+  FIREBASE_TOKEN_URI: token_uri,
+  FIREBASE_AUTH_PROVIDER_X509_CERT_URL: auth_provider_x509_cert_url,
+  FIREBASE_CLIENT_X509_CERT_URL: client_x509_cert_url,
+  FIREBASE_UNIVERSE_DOMAIN: universe_domain,
+} = process.env;
+
+const serviceAccountKey = {
+  type,
+  project_id,
+  private_key_id,
+  private_key,
+  client_email,
+  client_id,
+  auth_uri,
+  token_uri,
+  auth_provider_x509_cert_url,
+  client_x509_cert_url,
+  universe_domain,
+};
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccountKey),
